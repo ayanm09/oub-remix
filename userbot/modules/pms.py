@@ -26,7 +26,7 @@ from userbot.events import register
 
 # ========================= CONSTANTS ============================
 UNAPPROVED_MSG = (
-    "`HeY! Please don't spam. Wait for my master's approval 🙃\nMessage remaining:1 \n\n`")
+    "`HeY! Please don't spam. Wait for my master's approval 🙃\nDon't worry. It's an automated message.\n\nWait for my master to look into it.\n\nNOTE: If you send more than two messages, you will get report as spam + block. \n\n`")
 # =================================================================
 
 NO_PM_LOG_USERS = []
@@ -75,9 +75,9 @@ async def permitpm(event):
                 else:
                     COUNT_PM[event.chat_id] = COUNT_PM[event.chat_id] + 1
 
-                if COUNT_PM[event.chat_id] > 2:
+                if COUNT_PM[event.chat_id] > 5:
                     await event.respond(
-                        "`You were spamming my pm dude.`\n"
+                        "`You were spamming my pm too much dude.`\n"
                         "`You have been BLOCKED and reported as SPAM now. JUST FUCK OFF 🖕.`"
                     )
 
@@ -246,7 +246,7 @@ async def blockpm(block):
         aname = replied_user.id
         name0 = str(replied_user.first_name)
         await block.client(BlockRequest(replied_user.id))
-        await block.edit("`You've been blocked!`")
+        await block.edit("`My master thinks that you're unimportant person who spams too much.`\n\n`Hence, you've been blocked😡 :) !`")
         uid = replied_user.id
     else:
         await block.client(BlockRequest(block.chat_id))
@@ -316,7 +316,7 @@ async def approve_p_m(event):
                 await asyncio.sleep(3)
                 await event.delete()
 
-                
+
 @register(pattern="^.log(?: |$)(.*)")
 async def approve_p_m(event):
     if event.fwd_from:
@@ -442,10 +442,10 @@ CMD_HELP.update({
 \nUsage: Allows notifications for unapproved PMs.\
 \n\n`.pmute`\
 \nUsage: Reply .pmute and it will mute that person in pm<can be used in group also>.\
-\n\n`punmute`\
+\n\n`.punmute`\
 \nUsage: Reply .punmute and it will unmute that person in pm.\
 \n\n`logpms`\
 \nUsage: If you don't want chat logs than use `.nolog` , for opposite use `.log`. Default is .log enabled\nThis will now log chat msgs to your PM_LOGGR_BOT_API_ID.\
 \nnotice: now you can totally disable pm logs by adding heroku vars PM_LOGGR_BOT_API_ID by providing a valid group ID and NC_LOG_P_M_S True or False\
-\nwhere False means no pm logs at all..enjoy.. update and do add above mentioned vars."       
+\nwhere False means no pm logs at all..enjoy.. update and do add above mentioned vars."
 })
