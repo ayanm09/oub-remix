@@ -890,7 +890,7 @@ async def slap(replied_user, event):
     throw = choice(THROW)
     where = choice(WHERE)
 
-    caption = "..." + temp.format(
+    caption = "Ayan" + temp.format(
         victim=slapped, item=item, hits=hit, throws=throw, where=where)
 
     return caption
